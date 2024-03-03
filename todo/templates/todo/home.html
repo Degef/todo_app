@@ -1,0 +1,35 @@
+{% extends "todo/base.html" %}
+
+{% block content %}
+	<h2>
+		To-do List
+		<button class="btn btn-primary">
+			<a id="inside-btn" href="{%url 'add_todo'%}">Add To-do</a>
+		</button>
+	</h2>
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Actions</th>
+			<th>Due Date</th>
+			<th>Completed</th>
+		</tr>
+		{% for todo in todos %}
+			<tr>
+				<td>{{ todo.title }}</td>
+				<td>{{ todo.description }}</td>
+				<td>
+					<button type="button" class="btn btn-primary">
+						<a id="inside-btn" href="{%url 'update' todo.pk%}">Update</a>
+					</button>
+					<button class="btn btn-danger">
+						<a id="inside-btn" href="{%url 'delete' todo.pk%}">Delete</a>
+					</button>
+				</td>
+				<td>{{ todo.due_date }}</td>
+				<td>{{ todo.completed }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock %}
